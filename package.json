@@ -1,0 +1,19 @@
+{
+  "name": "receipt-printer",
+  "version": "0.0.1",
+  "description": "an API for printing to a POS-58",
+  "main": "index.js",
+  "author": "Ethan Zimbelman",
+  "license": "MIT",
+  "scripts": {
+    "dev": "npx nodemon index.js",
+    "http": "ngrok http 3000"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
