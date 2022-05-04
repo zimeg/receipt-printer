@@ -13,15 +13,15 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
   const fileName = `prints/${Date.now().toString()}.in`;
   const msg = `${req.body.msg}\n\n\n\n\n`; // flush the output for a clean tear
-  if (msg.length > 805) res.status(400).send("`msg` is too long (>800)");
-  fs.writeFile(fileName, msg, function (err) {
-    if (err) res.status(500).send(err);
+  if (msg.length > 805) return res.status(400).send("`msg` is too long (>800)");
+  fs.writeFile(fileName, msg, (err) => {
+    if (err) return res.status(500).send('error saving message');
   });
 
   exec(`lpr -l ${fileName}`, (err, stdout, stderr) => {
-    if (err) res.status(500).send(stderr);
+    if (err) return res.status(500).send(stderr);
   });
-  res.send('success: `msg` is printing!');
+  res.status(200).send('success: `msg` is printing!');
 });
 
 const port = 3000;
